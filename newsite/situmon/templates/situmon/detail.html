@@ -1,0 +1,21 @@
+{% if not question.answer_set.all %}
+    <li>質問番号: {{question.id}}</li>
+    <li>質問タイトル: {{question.question_title}}</li>
+    <li>質問内容: {{question.question_text}}<li>
+    <li>まだ回答がありません</li>
+    <a href="{% url 'answer_post' question.id %}">回答を投稿しますか?</a>
+    <a href="{% url 'top' %}">トップに戻る</a>
+
+{% else %}
+    <li>質問番号: {{question.id}}</li>
+    <li>質問タイトル: {{question.question_title}}</li>
+    <li>質問内容: {{question.question_text}}</li>
+    {% for answer in question.answer_set.all %}
+        <main>回答: {{answer.answer_text}}</main>
+    {% endfor %}
+    <a href="{% url 'answer_post' question.id %}">回答を投稿しますか?</a>
+    <a href="{% url 'top' %}">トップに戻る</a>
+{% endif %}    
+       
+
+

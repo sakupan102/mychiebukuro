@@ -1,0 +1,15 @@
+<form action="{% url 'answer_post_to' question.id %}" method="post">
+{% csrf_token %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div>
+        <li>質問番号: {{question.id}}
+        <li>質問タイトル:{{question.question_title}}</li>
+        <li>質問内容: {{question.question_text}}</li> 
+
+    </div>
+    <div>
+        <label for="answer_text">回答内容</label>
+        <input type="text" id="answer_text", name="answer_text">
+    </div>
+    <input type="submit", value="送信する">
+</form>

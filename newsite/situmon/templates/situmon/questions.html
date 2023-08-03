@@ -1,0 +1,23 @@
+{% for question in page_obj %}
+    質問番号: {{question.id}}<br>
+    質問タイトル: {{ question.question_title }}<br>
+    質問内容: {{question.question_text}}<br>
+    <a href="{% url 'detail' question.id %}">質問番号{{question.id}}の回答はこちら</a><br>
+{% endfor %} 
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div> 
